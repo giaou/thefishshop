@@ -1,0 +1,6 @@
+###
+GET http://localhost:5211/fishes
+
+
+###
+GET http://localhost:5211/fishes/bc77dda0-d316-4fc1-a93b-4ee62dff8eca

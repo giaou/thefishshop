@@ -4,3 +4,18 @@ GET http://localhost:5211/fishes
 
 ###
 GET http://localhost:5211/fishes/72568c9b-cbbc-42ed-9343-5d86f5bd046c
+
+
+###
+POST http://localhost:5211/fishes
+Content-Type: application/json
+
+{
+    "name":"Test Fish",
+    "type":"Freshwater",
+    "habitat":"",
+    "maxSizeInInInches":3.0,
+    "description":"this is the description",
+    "price":9.1,
+    "koiFish":false
+}

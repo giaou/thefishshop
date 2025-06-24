@@ -314,4 +314,10 @@ app.MapGet("/fishes/{id}", (Guid id) =>
     
 });
 
+app.MapPost("/fishes", (Fish newFish) =>
+{
+    newFish.Id = Guid.NewGuid();
+    fishes.Add(newFish);
+    return Results.Ok(newFish); 
+});
 app.Run();

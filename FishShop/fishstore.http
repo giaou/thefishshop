@@ -3,7 +3,7 @@ GET http://localhost:5211/fishes
 
 
 ###
-GET http://localhost:5211/fishes/d10a72f2-68bc-4604-ac74-3de26b9f5d8c
+GET http://localhost:5211/fishes/2cd461a8-32e5-4983-ab8b-4b062825b091
 
 
 ###
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/d646dc37-fd30-430a-90ad-de037e4a338d
+PUT http://localhost:5211/fishes/2cd461a8-32e5-4983-ab8b-4b062825b091
 Content-Type: application/json
 
 {

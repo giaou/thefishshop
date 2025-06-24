@@ -18,7 +18,7 @@ public class Fish
     [StringLength(70)]
     public string Habitat { get; set; }
 
-    public decimal MaxSizeInInInches { get; set; }
+    public decimal MaxSizeInInches { get; set; }
 
     [Required]
     [StringLength(1000)]

@@ -305,6 +305,8 @@ List<Fish> fishes = [
     },
 ];
 
+const string GetFishEndpointName = "GetFish";
+
 app.MapGet("/fishes", () => fishes);
 
 app.MapGet("/fishes/{id}", (Guid id) =>
@@ -312,12 +314,13 @@ app.MapGet("/fishes/{id}", (Guid id) =>
     var fish = fishes.Find(fish => id == fish.Id);
     return fish is null ? Results.NotFound() : Results.Ok(fish);
     
-});
+}).WithName(GetFishEndpointName);
 
 app.MapPost("/fishes", (Fish newFish) =>
 {
     newFish.Id = Guid.NewGuid();
     fishes.Add(newFish);
-    return Results.Ok(newFish); 
+    return Results.CreatedAtRoute(GetFishEndpointName, new { id = newFish.Id }, newFish);
 });
+
 app.Run();

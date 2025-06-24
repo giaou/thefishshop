@@ -19,3 +19,17 @@ Content-Type: application/json
     "price":9.1,
     "koiFish":false
 }
+
+###
+PUT http://localhost:5211/fishes/d646dc37-fd30-430a-90ad-de037e4a338d
+Content-Type: application/json
+
+{
+    "name":"Betta new testing",
+    "type":"Saltwater",
+    "habitat":"USA",
+    "maxSizeInInInches":3.0,
+    "description":"this is the description",
+    "price":9.1,
+    "koiFish":true
+}

@@ -323,4 +323,22 @@ app.MapPost("/fishes", (Fish newFish) =>
     return Results.CreatedAtRoute(GetFishEndpointName, new { id = newFish.Id }, newFish);
 });
 
+app.MapPut("/fishes/{id}", (Guid id, Fish updatedFish) =>
+{
+    //check for ID
+    var existingFish = fishes.Find(fish => fish.Id == id);
+    if (existingFish is null) return Results.NotFound();
+
+    //update new info
+    existingFish.Name = updatedFish.Name;
+    existingFish.Type = updatedFish.Type;
+    existingFish.Habitat = updatedFish.Habitat;
+    existingFish.MaxSizeInInInches = updatedFish.MaxSizeInInInches;
+    existingFish.Description = updatedFish.Description;
+    existingFish.Price = updatedFish.Price;
+    existingFish.KoiFish = updatedFish.KoiFish;
+
+    return Results.NoContent();
+});
+
 app.Run();

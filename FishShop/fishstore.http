@@ -3,7 +3,7 @@ GET http://localhost:5211/fishes
 
 
 ###
-GET http://localhost:5211/fishes/2cd461a8-32e5-4983-ab8b-4b062825b091
+GET http://localhost:5211/fishes/8244d193-5437-4199-9d41-ccd61aa2039e
 
 
 ###
@@ -11,9 +11,9 @@ POST http://localhost:5211/fishes
 Content-Type: application/json
 
 {
-    "name":"Test Fish",
+    "name":"fhdf",
     "type":"Freshwater",
-    "habitat":"",
+    "habitat":"fefe",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
     "price":9.1,
@@ -21,13 +21,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/2cd461a8-32e5-4983-ab8b-4b062825b091
+PUT http://localhost:5211/fishes/8244d193-5437-4199-9d41-ccd61aa2039e
 Content-Type: application/json
 
 {
     "name":"Betta new testing",
     "type":"Saltwater",
-    "habitat":"USA",
+    "habitat":"fdfd",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
     "price":9.1,

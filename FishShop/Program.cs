@@ -321,7 +321,7 @@ app.MapPost("/fishes", (Fish newFish) =>
     newFish.Id = Guid.NewGuid();
     fishes.Add(newFish);
     return Results.CreatedAtRoute(GetFishEndpointName, new { id = newFish.Id }, newFish);
-});
+}).WithParameterValidation();
 
 app.MapPut("/fishes/{id}", (Guid id, Fish updatedFish) =>
 {
@@ -339,6 +339,6 @@ app.MapPut("/fishes/{id}", (Guid id, Fish updatedFish) =>
     existingFish.KoiFish = updatedFish.KoiFish;
 
     return Results.NoContent();
-});
+}).WithParameterValidation();
 
 app.Run();

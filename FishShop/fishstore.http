@@ -3,7 +3,7 @@ GET http://localhost:5211/fishes
 
 
 ###
-GET http://localhost:5211/fishes/8244d193-5437-4199-9d41-ccd61aa2039e
+GET http://localhost:5211/fishes/161c6263-1564-44f0-a3d8-89efcbcc9400
 
 
 ###
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/8244d193-5437-4199-9d41-ccd61aa2039e
+PUT http://localhost:5211/fishes/03715417-a08e-4e8b-9bbc-42d7f5aaaeb2
 Content-Type: application/json
 
 {
@@ -33,3 +33,6 @@ Content-Type: application/json
     "price":9.1,
     "koiFish":true
 }
+
+###
+DELETE http://localhost:5211/fishes/161c6263-1564-44f0-a3d8-89efcbcc9400

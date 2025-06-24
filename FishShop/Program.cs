@@ -341,4 +341,12 @@ app.MapPut("/fishes/{id}", (Guid id, Fish updatedFish) =>
     return Results.NoContent();
 }).WithParameterValidation();
 
+
+app.MapDelete("/fishes/{id}", (Guid id) =>
+{
+    fishes.RemoveAll(fish => fish.Id == id);
+    return Results.NoContent();
+
+});
+
 app.Run();

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using FishShop.Data;
+using FishShop.Features.Fishes.GetFishes;
 using FishShop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ FishData data = new();
 
 const string GetFishEndpointName = "GetFish";
 
-app.MapGet("/fishes", () => data.GetFishes().Select(fish => new FishSummaryDto(fish.Id, fish.Name, fish.Type.Name, fish.Habitat, fish.MaxSizeInInches, fish.Price)));
+app.MapGetFishes(data);
 
 app.MapGet("/types", ()=>data.GetTypes().Select(type => new FishTypesDto(type.Id, type.Name)));
 
@@ -95,14 +96,7 @@ app.MapDelete("/fishes/{id}", (Guid id) =>
 
 app.Run();
 
-public record FishSummaryDto(
-    Guid Id,
-    string Name,
-    string Type,
-    string Habitat,
-    decimal MaxSizeInInches,
-    decimal Price
-);
+
 
 public record FishDetailsDto (
     Guid Id,

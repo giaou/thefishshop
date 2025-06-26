@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using FishShop.Data;
+using FishShop.Features.Fishes.GetFish;
 using FishShop.Features.Fishes.GetFishes;
 using FishShop.Models;
 
@@ -8,61 +9,44 @@ var app = builder.Build();
 
 FishData data = new();
 
-const string GetFishEndpointName = "GetFish";
 
 app.MapGetFishes(data);
 
 app.MapGet("/types", ()=>data.GetTypes().Select(type => new FishTypesDto(type.Id, type.Name)));
 
-app.MapGet("/fishes/{id}", (Guid id) =>
-{
-    Fish? fish = data.GetFish(id);
-    return fish is null ? Results.NotFound() : Results.Ok(
-        new FishDetailsDto(
-            fish.Id,
-            fish.Name,
-            fish.Type.Id,
-            fish.Habitat,
-            fish.MaxSizeInInches,
-            fish.Description,
-            fish.Price,
-            fish.KoiFish
-        )
-    );
-    
-}).WithName(GetFishEndpointName);
+app.MapGetFish(data);
 
-app.MapPost("/fishes", (CreateFishDto newFishDto) =>
-{
-    var fishType = data.GetType(newFishDto.FishTypeId);
-    if (fishType is null) return Results.BadRequest("Invalid Fish Type Id");
-    var newFish = new Fish
-    {
-        Name = newFishDto.Name,
-        Type = fishType,
-        Habitat = newFishDto.Habitat,
-        MaxSizeInInches = newFishDto.MaxSizeInInches,
-        Description = newFishDto.Description,
-        Price = newFishDto.Price,
-        KoiFish = newFishDto.KoiFish
-    };
-    data.AddFish(newFish);
+// app.MapPost("/fishes", (CreateFishDto newFishDto) =>
+// {
+//     var fishType = data.GetType(newFishDto.FishTypeId);
+//     if (fishType is null) return Results.BadRequest("Invalid Fish Type Id");
+//     var newFish = new Fish
+//     {
+//         Name = newFishDto.Name,
+//         Type = fishType,
+//         Habitat = newFishDto.Habitat,
+//         MaxSizeInInches = newFishDto.MaxSizeInInches,
+//         Description = newFishDto.Description,
+//         Price = newFishDto.Price,
+//         KoiFish = newFishDto.KoiFish
+//     };
+//     data.AddFish(newFish);
 
-    return Results.CreatedAtRoute(
-        GetFishEndpointName,
-        new { id = newFish.Id },
-        new FishDetailsDto(
-            newFish.Id,
-            newFish.Name,
-            newFish.Type.Id,
-            newFish.Habitat,
-            newFish.MaxSizeInInches,
-            newFish.Description,
-            newFish.Price,
-            newFish.KoiFish
-        )
-    );
-}).WithParameterValidation();
+//     return Results.CreatedAtRoute(
+//         GetFishEndpointName,
+//         new { id = newFish.Id },
+//         new FishDetailsDto(
+//             newFish.Id,
+//             newFish.Name,
+//             newFish.Type.Id,
+//             newFish.Habitat,
+//             newFish.MaxSizeInInches,
+//             newFish.Description,
+//             newFish.Price,
+//             newFish.KoiFish
+//         )
+//     );
+// }).WithParameterValidation();
 
 app.MapPut("/fishes/{id}", (Guid id, UpdateFishDto updatedFishDto) =>
 {
@@ -98,16 +82,7 @@ app.Run();
 
 
 
-public record FishDetailsDto (
-    Guid Id,
-    string Name,
-    Guid FishTypeId,
-    string Habitat,
-    decimal MaxSizeInInches,
-    string Description,
-    decimal Price,
-    bool KoiFish
-);
+
 
 public record CreateFishDto(
     [Required][StringLength(70)]string Name,

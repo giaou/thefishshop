@@ -10,9 +10,7 @@ public class Fish
     [StringLength(70)]
     public string Name { get; set; }
 
-    [Required]
-    [StringLength(70)]
-    public string Type { get; set; }
+    public FishType Type { get; set; }
 
     [Required]
     [StringLength(70)]

@@ -349,23 +349,40 @@ app.MapPost("/fishes", (CreateFishDto newFishDto) =>
         KoiFish = newFishDto.KoiFish
     };
     fishes.Add(newFish);
-    return Results.CreatedAtRoute(GetFishEndpointName, new { id = newFish.Id },new FishDetailsDto(newFish.Id,newFish.Name,newFish.Type.Id,newFish.Habitat,newFish.MaxSizeInInches,newFish.Description,newFish.Price,newFish.KoiFish));
+    return Results.CreatedAtRoute(
+        GetFishEndpointName,
+        new { id = newFish.Id },
+        new FishDetailsDto(
+            newFish.Id,
+            newFish.Name,
+            newFish.Type.Id,
+            newFish.Habitat,
+            newFish.MaxSizeInInches,
+            newFish.Description,
+            newFish.Price,
+            newFish.KoiFish
+        )
+    );
 }).WithParameterValidation();
 
-app.MapPut("/fishes/{id}", (Guid id, Fish updatedFish) =>
+app.MapPut("/fishes/{id}", (Guid id, UpdateFishDto updatedFishDto) =>
 {
     //check for ID
     var existingFish = fishes.Find(fish => fish.Id == id);
     if (existingFish is null) return Results.NotFound();
 
+    //check for valid fish type
+    var fishType = types.Find(type => type.Id == updatedFishDto.FishTypeId);
+    if (fishType is null) return Results.BadRequest("Invalid Fish Type ID");
+
     //update new info
-    existingFish.Name = updatedFish.Name;
-    existingFish.Type = updatedFish.Type;
-    existingFish.Habitat = updatedFish.Habitat;
-    existingFish.MaxSizeInInches = updatedFish.MaxSizeInInches;
-    existingFish.Description = updatedFish.Description;
-    existingFish.Price = updatedFish.Price;
-    existingFish.KoiFish = updatedFish.KoiFish;
+    existingFish.Name = updatedFishDto.Name;
+    existingFish.Type = fishType;
+    existingFish.Habitat = updatedFishDto.Habitat;
+    existingFish.MaxSizeInInches = updatedFishDto.MaxSizeInInches;
+    existingFish.Description = updatedFishDto.Description;
+    existingFish.Price = updatedFishDto.Price;
+    existingFish.KoiFish = updatedFishDto.KoiFish;
 
     return Results.NoContent();
 }).WithParameterValidation();
@@ -401,6 +418,16 @@ public record FishDetailsDto (
 );
 
 public record CreateFishDto(
+    [Required][StringLength(70)]string Name,
+    Guid FishTypeId,
+    [Required][StringLength(70)]string Habitat,
+    decimal MaxSizeInInches,
+    [Required][StringLength(1000)]string Description,
+    decimal Price,
+    bool KoiFish
+);
+
+public record UpdateFishDto(
     [Required][StringLength(70)]string Name,
     Guid FishTypeId,
     [Required][StringLength(70)]string Habitat,

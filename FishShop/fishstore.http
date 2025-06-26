@@ -5,7 +5,7 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/1680b5bd-9fd5-4159-ae13-874a878230a9
+GET http://localhost:5211/fishes/94562e13-85b8-41d4-a352-cb4598c4383d
 
 
 ###
@@ -23,21 +23,18 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/1680b5bd-9fd5-4159-ae13-874a878230a9
+PUT http://localhost:5211/fishes/94562e13-85b8-41d4-a352-cb4598c4383d
 Content-Type: application/json
 
 {
-    "name":"Betta new testing",
-    "type":{
-        "id": "4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
-    "name": "Saltwater"
-    },
-    "habitat":"fdfd",
+    "name":"Beta new Testing",
+    "FishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+    "habitat":"Saltwater",
     "maxSizeInInInches":3.0,
-    "description":"this is the description",
+    "description":"this is the description of ABC",
     "price":9.1,
-    "koiFish":true
+    "koiFish":false
 }
 
 ###
-DELETE http://localhost:5211/fishes/3ab3befc-3016-44c4-8f1e-fceff4af08f3
+DELETE http://localhost:5211/fishes/94562e13-85b8-41d4-a352-cb4598c4383d

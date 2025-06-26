@@ -6,20 +6,17 @@ public class Fish
 {
     public Guid Id { get; set; }
 
-    [Required]
-    [StringLength(70)]
+  
     public string Name { get; set; }
 
     public FishType Type { get; set; }
 
-    [Required]
-    [StringLength(70)]
+
     public string Habitat { get; set; }
 
     public decimal MaxSizeInInches { get; set; }
 
-    [Required]
-    [StringLength(1000)]
+
     public string Description { get; set; }
 
     public decimal Price { get; set; }

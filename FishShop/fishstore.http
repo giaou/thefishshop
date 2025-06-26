@@ -3,7 +3,7 @@ GET http://localhost:5211/fishes
 
 
 ###
-GET http://localhost:5211/fishes/161c6263-1564-44f0-a3d8-89efcbcc9400
+GET http://localhost:5211/fishes/456d2234-db7f-407b-a57b-e05b82e6b635
 
 
 ###
@@ -12,7 +12,10 @@ Content-Type: application/json
 
 {
     "name":"fhdf",
-    "type":"Freshwater",
+    "type":{
+        "id": "4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+      "name": "Freshwater"
+    },
     "habitat":"fefe",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
@@ -21,12 +24,15 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/03715417-a08e-4e8b-9bbc-42d7f5aaaeb2
+PUT http://localhost:5211/fishes/456d2234-db7f-407b-a57b-e05b82e6b635
 Content-Type: application/json
 
 {
     "name":"Betta new testing",
-    "type":"Saltwater",
+    "type":{
+        "id": "4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+    "name": "Saltwater"
+    },
     "habitat":"fdfd",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
@@ -35,4 +41,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/161c6263-1564-44f0-a3d8-89efcbcc9400
+DELETE http://localhost:5211/fishes/456d2234-db7f-407b-a57b-e05b82e6b635

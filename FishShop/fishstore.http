@@ -1,9 +1,11 @@
 ###
 GET http://localhost:5211/fishes
 
+###
+GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/8170b7b8-92c8-4af8-9b01-c29a2f297880
+GET http://localhost:5211/fishes/1680b5bd-9fd5-4159-ae13-874a878230a9
 
 
 ###
@@ -12,10 +14,7 @@ Content-Type: application/json
 
 {
     "name":"fhdf",
-    "type":{
-        "id": "4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
-      "name": "Freshwater"
-    },
+    "FishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
     "habitat":"fefe",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
@@ -24,7 +23,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/ca1aa7d7-12fc-4ea5-9862-95cb7ef2afaa
+PUT http://localhost:5211/fishes/1680b5bd-9fd5-4159-ae13-874a878230a9
 Content-Type: application/json
 
 {
@@ -41,4 +40,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/ca1aa7d7-12fc-4ea5-9862-95cb7ef2afaa
+DELETE http://localhost:5211/fishes/3ab3befc-3016-44c4-8f1e-fceff4af08f3

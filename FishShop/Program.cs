@@ -319,12 +319,14 @@ List<Fish> fishes = [
 
 const string GetFishEndpointName = "GetFish";
 
-app.MapGet("/fishes", () => fishes);
+app.MapGet("/fishes", () => fishes.Select(fish => new FishSummaryDto(fish.Id, fish.Name, fish.Type.Name, fish.Habitat, fish.MaxSizeInInches, fish.Price)));
+
+app.MapGet("/types", ()=>types.Select(type => new FishTypesDto(type.Id, type.Name)));
 
 app.MapGet("/fishes/{id}", (Guid id) =>
 {
     var fish = fishes.Find(fish => id == fish.Id);
-    return fish is null ? Results.NotFound() : Results.Ok(fish);
+    return fish is null ? Results.NotFound() : Results.Ok(new FishDetailsDto(fish.Id,fish.Name,fish.Type.Id,fish.Habitat,fish.MaxSizeInInches,fish.Description,fish.Price,fish.KoiFish));
     
 }).WithName(GetFishEndpointName);
 
@@ -362,3 +364,25 @@ app.MapDelete("/fishes/{id}", (Guid id) =>
 });
 
 app.Run();
+
+public record FishSummaryDto(
+    Guid Id,
+    string Name,
+    string Type,
+    string Habitat,
+    decimal MaxSizeInInches,
+    decimal Price
+);
+
+public record FishDetailsDto (
+    Guid Id,
+    string Name,
+    Guid FishTypeId,
+    string Habitat,
+    decimal MaxSizeInInches,
+    string Description,
+    decimal Price,
+    bool KoiFish
+);
+
+public record FishTypesDto(Guid Id, string Name);

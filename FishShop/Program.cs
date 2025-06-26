@@ -3,6 +3,7 @@ using FishShop.Data;
 using FishShop.Features.Fishes.CreateFish;
 using FishShop.Features.Fishes.GetFish;
 using FishShop.Features.Fishes.GetFishes;
+using FishShop.Features.Fishes.UpdateFish;
 using FishShop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,33 +15,9 @@ FishData data = new();
 app.MapGetFishes(data);
 app.MapGetFish(data);
 app.MapCreateFish(data);
+app.MapUpdateFish(data);
 
 app.MapGet("/types", ()=>data.GetTypes().Select(type => new FishTypesDto(type.Id, type.Name)));
-
-
-
-app.MapPut("/fishes/{id}", (Guid id, UpdateFishDto updatedFishDto) =>
-{
-    //check for ID
-    var existingFish = data.GetFish(id);
-    if (existingFish is null) return Results.NotFound();
-
-    //check for valid fish type
-    var fishType = data.GetType(updatedFishDto.FishTypeId);
-    if (fishType is null) return Results.BadRequest("Invalid Fish Type ID");
-
-    //update new info
-    existingFish.Name = updatedFishDto.Name;
-    existingFish.Type = fishType;
-    existingFish.Habitat = updatedFishDto.Habitat;
-    existingFish.MaxSizeInInches = updatedFishDto.MaxSizeInInches;
-    existingFish.Description = updatedFishDto.Description;
-    existingFish.Price = updatedFishDto.Price;
-    existingFish.KoiFish = updatedFishDto.KoiFish;
-
-    return Results.NoContent();
-}).WithParameterValidation();
-
 
 app.MapDelete("/fishes/{id}", (Guid id) =>
 {
@@ -52,19 +29,5 @@ app.MapDelete("/fishes/{id}", (Guid id) =>
 app.Run();
 
 
-
-
-
-
-
-public record UpdateFishDto(
-    [Required][StringLength(70)]string Name,
-    Guid FishTypeId,
-    [Required][StringLength(70)]string Habitat,
-    decimal MaxSizeInInches,
-    [Required][StringLength(1000)]string Description,
-    decimal Price,
-    bool KoiFish
-);
 
 public record FishTypesDto(Guid Id, string Name);

@@ -5,15 +5,18 @@ using FishShop.Features.FishesTypes.GetFishTypes;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+//register service here
+builder.Services.AddTransient<FishData>();
+
 var app = builder.Build();
 
-FishData data = new();
 
 //Fish Endpoints
-app.MapFishes(data);
+app.MapFishes();
 
 //FishType Endpoints
-app.MapFishTypes(data);
+app.MapFishTypes();
 
 
 app.Run();

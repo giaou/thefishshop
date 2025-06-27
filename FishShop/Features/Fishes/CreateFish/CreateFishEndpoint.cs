@@ -7,9 +7,9 @@ namespace FishShop.Features.Fishes.CreateFish;
 
 public static class CreateFishEndpoint
 {
-    public static void MapCreateFish(this IEndpointRouteBuilder app, FishData data)
+    public static void MapCreateFish(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/", (CreateFishDto newFishDto) =>{
+        app.MapPost("/", (CreateFishDto newFishDto,FishData data) =>{
             var fishType = data.GetType(newFishDto.FishTypeId);
             if (fishType is null) return Results.BadRequest("Invalid Fish Type Id");
             var newFish = new Fish

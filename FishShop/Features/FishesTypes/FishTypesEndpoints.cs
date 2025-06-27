@@ -6,9 +6,9 @@ namespace FishShop.Features.FishesTypes;
 
 public static class FishTypesEndpoints
 {
-    public static void MapFishTypes(this IEndpointRouteBuilder app, FishData data)
+    public static void MapFishTypes(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/types");
-        group.MapGetFishTypes(data);
+        group.MapGetFishTypes();
     }
 }

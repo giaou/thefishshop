@@ -10,13 +10,13 @@ namespace FishShop.Features.Fishes;
 
 public static class FishsEndpoints
 {
-    public static void MapFishes(this IEndpointRouteBuilder app, FishData data)
+    public static void MapFishes(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/fishes");
-        group.MapGetFishes(data);
-        group.MapGetFish(data);
-        group.MapCreateFish(data);
-        group.MapUpdateFish(data);
-        group.MapDeleteFish(data);
+        group.MapGetFishes();
+        group.MapGetFish();
+        group.MapCreateFish();
+        group.MapUpdateFish();
+        group.MapDeleteFish();
     }
 }

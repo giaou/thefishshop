@@ -6,7 +6,7 @@ namespace FishShop.Features.Fishes.UpdateFish;
 public static class UpdateFishEndpoint
 {
     public static void MapUpdateFish(this IEndpointRouteBuilder app, FishData data){
-        app.MapPut("/fishes/{id}", (Guid id, UpdateFishDto updatedFishDto) =>{
+        app.MapPut("/{id}", (Guid id, UpdateFishDto updatedFishDto) =>{
             //check for ID
             var existingFish = data.GetFish(id);
             if (existingFish is null) return Results.NotFound();

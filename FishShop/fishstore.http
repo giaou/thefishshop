@@ -5,7 +5,7 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/b4baa211-abc2-4bd7-bf0b-8c166ee5448a
+GET http://localhost:5211/fishes/924fc91c-06b9-445f-8356-2eaa15a2ed2f
 ###
 POST http://localhost:5211/fishes
 Content-Type: application/json
@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/b4baa211-abc2-4bd7-bf0b-8c166ee5448a
+PUT http://localhost:5211/fishes/924fc91c-06b9-445f-8356-2eaa15a2ed2f
 Content-Type: application/json
 
 {
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/b4baa211-abc2-4bd7-bf0b-8c166ee5448a
+DELETE http://localhost:5211/fishes/924fc91c-06b9-445f-8356-2eaa15a2ed2f

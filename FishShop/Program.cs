@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //register service here
 builder.Services.AddTransient<FishDataLogger>();
-builder.Services.AddScoped<FishData>();
+builder.Services.AddSingleton<FishData>();
 
 var app = builder.Build();
 

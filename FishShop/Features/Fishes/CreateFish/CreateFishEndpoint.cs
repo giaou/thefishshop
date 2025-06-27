@@ -9,7 +9,7 @@ public static class CreateFishEndpoint
 {
     public static void MapCreateFish(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/", (CreateFishDto newFishDto,FishData data) =>{
+        app.MapPost("/", (CreateFishDto newFishDto,FishData data,FishDataLogger logger) =>{
             var fishType = data.GetType(newFishDto.FishTypeId);
             if (fishType is null) return Results.BadRequest("Invalid Fish Type Id");
             var newFish = new Fish
@@ -23,6 +23,7 @@ public static class CreateFishEndpoint
                 KoiFish = newFishDto.KoiFish
             };
             data.AddFish(newFish);
+            logger.printFishes();
 
             return Results.CreatedAtRoute(
                 EndpointName.GetFish,

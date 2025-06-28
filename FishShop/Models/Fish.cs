@@ -9,7 +9,9 @@ public class Fish
   
     public string Name { get; set; }
 
-    public FishType Type { get; set; }
+    public FishType? Type { get; set; }
+
+    public Guid FishTypeId { get; set; }
 
 
     public string Habitat { get; set; }

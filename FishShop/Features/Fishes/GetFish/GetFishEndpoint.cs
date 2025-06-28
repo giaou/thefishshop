@@ -14,7 +14,7 @@ public static class GetFishEndpoint
                 new FishDetailsDto(
                     fish.Id,
                     fish.Name,
-                    fish.Type.Id,
+                    fish.FishTypeId,
                     fish.Habitat,
                     fish.MaxSizeInInches,
                     fish.Description,

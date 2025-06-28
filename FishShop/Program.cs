@@ -6,7 +6,7 @@ using FishShop.Features.FishesTypes.GetFishTypes;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connString = "Data Source=FishData.db";
+var connString = builder.Configuration.GetConnectionString("FishData");
 
 //register service here
 builder.Services.AddTransient<FishDataLogger>();

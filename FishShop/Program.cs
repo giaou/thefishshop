@@ -6,9 +6,12 @@ using FishShop.Features.FishesTypes.GetFishTypes;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connString = "Data Source=FishData.db";
+
 //register service here
 builder.Services.AddTransient<FishDataLogger>();
 builder.Services.AddSingleton<FishData>();
+builder.Services.AddSqlite<FishDataContext>(connString);
 
 var app = builder.Build();
 

@@ -5,14 +5,14 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/8116375c-dfb5-4a0e-af91-f942e4e5c91d
+GET http://localhost:5211/fishes/b23834ec-4f16-4427-9036-8af54fd09794
 ###
 POST http://localhost:5211/fishes
 Content-Type: application/json
 
 {
     "name":"fhdf",
-    "FishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+    "fishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
     "habitat":"fefe",
     "maxSizeInInInches":3.0,
     "description":"this is the description",
@@ -21,12 +21,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/8116375c-dfb5-4a0e-af91-f942e4e5c91d
+PUT http://localhost:5211/fishes/b23834ec-4f16-4427-9036-8af54fd09794
 Content-Type: application/json
 
 {
     "name":"Beta new Testing",
-    "FishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+    "fishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
     "habitat":"Saltwater",
     "maxSizeInInInches":3.0,
     "description":"this is the description of ABC",
@@ -35,4 +35,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/42157af1-9109-4a50-9761-87ace1a05fde
+DELETE http://localhost:5211/fishes/b23834ec-4f16-4427-9036-8af54fd09794

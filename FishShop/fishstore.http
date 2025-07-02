@@ -5,7 +5,7 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/cab4b4b5-8287-4bcf-9360-7914e0d39067
+GET http://localhost:5211/fishes/efba91c3-1daf-4170-8892-3efea6c939a9	
 ###
 POST http://localhost:5211/fishes
 Content-Type: application/json

@@ -8,8 +8,8 @@ namespace FishShop.Features.Fishes.GetFish;
 public static class GetFishEndpoint
 {
     public static void MapGetFish(this IEndpointRouteBuilder app){
-        app.MapGet("/{id}", (Guid id, FishData data) =>{
-            Fish? fish = data.GetFish(id);
+        app.MapGet("/{id}", (Guid id, FishDataContext dbContext) =>{
+            Fish? fish = dbContext.fishes.Find(id);
             return fish is null ? Results.NotFound() : Results.Ok(
                 new FishDetailsDto(
                     fish.Id,

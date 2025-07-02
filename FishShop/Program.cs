@@ -22,7 +22,7 @@ app.MapFishes();
 //FishType Endpoints
 app.MapFishTypes();
 
-app.MigrateDb();
+app.InitializeDb();
 
 
 app.Run();

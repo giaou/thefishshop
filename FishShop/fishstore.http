@@ -5,30 +5,30 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/efba91c3-1daf-4170-8892-3efea6c939a9	
+GET http://localhost:5211/fishes/4862198B-B60B-466B-9B1C-F582C27B1707		
 ###
 POST http://localhost:5211/fishes
 Content-Type: application/json
 
 {
-    "name":"fhdf",
-    "fishTypeId":"6A39DE98-5427-4B60-8D4A-FD7955B4ABFE",
-    "habitat":"fefe",
-    "maxSizeInInInches":3.0,
-    "description":"this is the description",
-    "price":9.1,
+    "name":"Neon Tetra",
+    "fishTypeId":"51FB4E2F-0DE0-43D8-89A6-81A481586EFA",
+    "habitat":"Southest Asia",
+    "maxSizeInInches":1.5,
+    "description":"Known for their vibrant blue and red stripes, neon tetras are peaceful schooling fish ideal for community tanks. They thrive in soft, acidic water and prefer to be kept in groups of six or more.",
+    "price":1.5,
     "koiFish":false
 }
 
 ###
-PUT http://localhost:5211/fishes/0f0f8d89-789b-4163-8c95-5cafce2f8c2d
+PUT http://localhost:5211/fishes/AC3DE51F-802B-4F5B-B504-C262E1154831
 Content-Type: application/json
 
 {
     "name":"Beta new Testing",
-    "fishTypeId":"4698dc77-d875-4a7b-8a2f-42d4db48e4fd",
+    "fishTypeId":"6A39DE98-5427-4B60-8D4A-FD7955B4ABFE",
     "habitat":"Saltwater",
-    "maxSizeInInInches":3.0,
+    "maxSizeInInches":3.0,
     "description":"this is the description of ABC",
     "price":9.1,
     "koiFish":false

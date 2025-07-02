@@ -1,6 +1,4 @@
-using System;
 using FishShop.Data;
-using FishShop.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FishShop.Features.Fishes.GetFishes;

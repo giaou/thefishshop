@@ -1,7 +1,6 @@
 using FishShop.Data;
 using FishShop.Features.Fishes;
 using FishShop.Features.FishesTypes;
-using FishShop.Features.FishesTypes.GetFishTypes;
 
 
 var builder = WebApplication.CreateBuilder(args);

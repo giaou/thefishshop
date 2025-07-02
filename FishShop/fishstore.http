@@ -5,7 +5,8 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/9e3c2111-597a-4f8e-a3e7-20a6769681a2		
+GET http://localhost:5211/fishes/860e4e65-ac91-4a53-be41-babb50bd1917
+
 ###
 POST http://localhost:5211/fishes
 Content-Type: application/json
@@ -16,23 +17,23 @@ Content-Type: application/json
     "habitat":"Southest Asia",
     "maxSizeInInches":1.5,
     "description":"Known for their vibrant blue and red stripes, neon tetras are peaceful schooling fish ideal for community tanks. They thrive in soft, acidic water and prefer to be kept in groups of six or more.",
-    "price":1.5,
+    "price":3.0,
     "koiFish":false
 }
 
 ###
-PUT http://localhost:5211/fishes/9e3c2111-597a-4f8e-a3e7-20a6769681a2
+PUT http://localhost:5211/fishes/860e4e65-ac91-4a53-be41-babb50bd1917
 Content-Type: application/json
 
 {
-    "name":"Beta new Testing",
-    "fishTypeId":"6A39DE98-5427-4B60-8D4A-FD7955B4ABFE",
-    "habitat":"Saltwater",
-    "maxSizeInInches":3.0,
-    "description":"this is the description of ABC",
-    "price":9.1,
+    "name":"Guppy",
+    "fishTypeId":"51FB4E2F-0DE0-43D8-89A6-81A481586EFA",
+    "habitat":"Global",
+    "maxSizeInInches":2.5,
+    "description":"Guppies are hardy, colorful fish that adapt well to various water conditions. They are livebearers, reproducing easily in captivity, and are suitable for beginners.",
+    "price":10.0,
     "koiFish":false
 }
 
 ###
-DELETE http://localhost:5211/fishes/0f0f8d89-789b-4163-8c95-5cafce2f8c2d
+DELETE http://localhost:5211/fishes/232ecdca-e2f5-4043-9d15-7b01678afc68

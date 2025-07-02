@@ -1,5 +1,6 @@
 using System;
 using FishShop.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FishShop.Features.FishesTypes.GetFishTypes;
 
@@ -7,6 +8,6 @@ public static class GetFishTypesEndpoint
 {
     public static void MapGetFishTypes(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/", (FishData data)=>data.GetTypes().Select(type => new GetFishTypesDto(type.Id, type.Name)));
+        app.MapGet("/", (FishDataContext dbContext)=>dbContext.types.Select(type => new GetFishTypesDto(type.Id, type.Name)).AsNoTracking());
     }
 }

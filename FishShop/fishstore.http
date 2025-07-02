@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "name":"Neon Tetra",
-    "fishTypeId":"51FB4E2F-0DE0-43D8-89A6-81A481586EFA",
+    "fishTypeId":"6a39de98-5427-4b60-8d4a-fd7955b4abfe",
     "habitat":"Southest Asia",
     "maxSizeInInches":1.5,
     "description":"Known for their vibrant blue and red stripes, neon tetras are peaceful schooling fish ideal for community tanks. They thrive in soft, acidic water and prefer to be kept in groups of six or more.",
@@ -36,4 +36,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/232ecdca-e2f5-4043-9d15-7b01678afc68
+DELETE http://localhost:5211/fishes/38cd1298-7e33-4eee-92ee-1236a531d56e

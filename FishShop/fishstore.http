@@ -5,7 +5,7 @@ GET http://localhost:5211/fishes
 GET http://localhost:5211/types
 
 ###
-GET http://localhost:5211/fishes/860e4e65-ac91-4a53-be41-babb50bd1917
+GET http://localhost:5211/fishes/1ff4b627-5e86-42c4-8703-25df3e74636d
 
 ###
 POST http://localhost:5211/fishes
@@ -22,11 +22,11 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:5211/fishes/860e4e65-ac91-4a53-be41-babb50bd1917
+PUT http://localhost:5211/fishes/1ff4b627-5e86-42c4-8703-25df3e74636d
 Content-Type: application/json
 
 {
-    "name":"Guppy",
+    "name":"Testing fish",
     "fishTypeId":"51FB4E2F-0DE0-43D8-89A6-81A481586EFA",
     "habitat":"Global",
     "maxSizeInInches":2.5,
@@ -36,4 +36,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5211/fishes/38cd1298-7e33-4eee-92ee-1236a531d56e
+DELETE http://localhost:5211/fishes/1ff4b627-5e86-42c4-8703-25df3e74636d

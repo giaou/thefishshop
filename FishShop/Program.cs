@@ -9,10 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("FishData");
 
 //register service here
-builder.Services.AddTransient<FishDataLogger>();
-builder.Services.AddSingleton<FishData>();
 builder.Services.AddSqlite<FishDataContext>(connString);
-
 var app = builder.Build();
 
 

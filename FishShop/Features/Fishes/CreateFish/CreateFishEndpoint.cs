@@ -9,29 +9,27 @@ public static class CreateFishEndpoint
 {
     public static void MapCreateFish(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/", (CreateFishDto newFishDto,FishData data,FishDataLogger logger) =>{
-            var fishType = data.GetType(newFishDto.FishTypeId);
-            if (fishType is null) return Results.BadRequest("Invalid Fish Type Id");
+        app.MapPost("/", (CreateFishDto newFishDto,FishDataContext dbContext) =>{
             var newFish = new Fish
             {
                 Name = newFishDto.Name,
-                Type = fishType,
+                FishTypeId = newFishDto.FishTypeId,
                 Habitat = newFishDto.Habitat,
                 MaxSizeInInches = newFishDto.MaxSizeInInches,
                 Description = newFishDto.Description,
                 Price = newFishDto.Price,
                 KoiFish = newFishDto.KoiFish
             };
-            data.AddFish(newFish);
-            logger.printFishes();
 
+            dbContext.fishes.Add(newFish);
+            dbContext.SaveChanges();
             return Results.CreatedAtRoute(
                 EndpointName.GetFish,
                 new { id = newFish.Id },
                 new FishDetailsDto(
                     newFish.Id,
                     newFish.Name,
-                    newFish.Type.Id,
+                    newFish.FishTypeId,
                     newFish.Habitat,
                     newFish.MaxSizeInInches,
                     newFish.Description,

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using FishShop.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,20 +7,20 @@ namespace FishShop.Data;
 
 public static class DataExtensions
 {
-    public static void InitializeDb(this WebApplication app)
+    public static async Task InitializeDb(this WebApplication app)
     {
-        app.MigrateDb();
-        app.SeedDb();
+        await app.MigrateDbAsync();
+        await app.SeedDbAsync();
     }
 
-    private static void MigrateDb(this WebApplication app)
+    private static async Task MigrateDbAsync(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
         FishDataContext dbContext = scope.ServiceProvider.GetRequiredService<FishDataContext>();
-        dbContext.Database.Migrate();
+        await dbContext.Database.MigrateAsync();
     }
 
-    private static void SeedDb(this WebApplication app)
+    private static async Task SeedDbAsync(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
         FishDataContext dbContext = scope.ServiceProvider.GetRequiredService<FishDataContext>();
@@ -30,7 +31,7 @@ public static class DataExtensions
                 new FishType { Name = "Freshwater" },
                 new FishType { Name = "Saltwater" }
             );
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

@@ -5,9 +5,9 @@ namespace FishShop.Features.Fishes.UpdateFish;
 public static class UpdateFishEndpoint
 {
     public static void MapUpdateFish(this IEndpointRouteBuilder app){
-        app.MapPut("/{id}", (Guid id, UpdateFishDto updatedFishDto,FishDataContext dbContext) =>{
+        app.MapPut("/{id}", async (Guid id, UpdateFishDto updatedFishDto,FishDataContext dbContext) =>{
             //check for ID
-            var existingFish = dbContext.fishes.Find(id);
+            var existingFish = await dbContext.fishes.FindAsync(id);
             if (existingFish is null) return Results.NotFound();
 
             //update new info
@@ -20,7 +20,7 @@ public static class UpdateFishEndpoint
             existingFish.KoiFish = updatedFishDto.KoiFish;
 
             //save changes
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.NoContent();
         }).WithParameterValidation();

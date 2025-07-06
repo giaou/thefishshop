@@ -7,10 +7,10 @@ public static class DeleteFishEndpoint
 {
     public static void MapDeleteFish(this IEndpointRouteBuilder app)
     {
-        app.MapDelete("/{id}", (Guid id,FishDataContext dbContext) =>{
-            dbContext.fishes
+        app.MapDelete("/{id}", async (Guid id,FishDataContext dbContext) =>{
+            await dbContext.fishes
                         .Where(fish => fish.Id == id)
-                        .ExecuteDelete();
+                        .ExecuteDeleteAsync();
             return Results.NoContent();
         });
     }

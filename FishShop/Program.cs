@@ -18,7 +18,7 @@ app.MapFishes();
 //FishType Endpoints
 app.MapFishTypes();
 
-app.InitializeDb();
+await app.InitializeDb();
 
 
 app.Run();

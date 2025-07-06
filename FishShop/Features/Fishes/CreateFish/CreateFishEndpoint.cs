@@ -8,7 +8,7 @@ public static class CreateFishEndpoint
 {
     public static void MapCreateFish(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/", (CreateFishDto newFishDto,FishDataContext dbContext) =>{
+        app.MapPost("/", async (CreateFishDto newFishDto,FishDataContext dbContext) =>{
             var newFish = new Fish
             {
                 Name = newFishDto.Name,
@@ -21,7 +21,7 @@ public static class CreateFishEndpoint
             };
 
             dbContext.fishes.Add(newFish);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
             return Results.CreatedAtRoute(
                 EndpointName.GetFish,
                 new { id = newFish.Id },

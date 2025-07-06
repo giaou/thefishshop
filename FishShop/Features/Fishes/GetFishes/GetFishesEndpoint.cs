@@ -8,7 +8,7 @@ public static class GetFishesEndpoint
 
     public static void MapGetFishes(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/", (FishDataContext dbContext) => dbContext.fishes
+        app.MapGet("/",  async (FishDataContext dbContext) => await dbContext.fishes
                                                         .Include(fish => fish.Type)
                                                         .Select(fish => new FishSummaryDto(
             fish.Id,
@@ -17,7 +17,8 @@ public static class GetFishesEndpoint
             fish.Habitat,
             fish.MaxSizeInInches,
             fish.Price))
-                        .AsNoTracking());
+                        .AsNoTracking()
+                        .ToListAsync());
     }
 
 }

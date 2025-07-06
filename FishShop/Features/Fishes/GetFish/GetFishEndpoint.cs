@@ -7,8 +7,8 @@ namespace FishShop.Features.Fishes.GetFish;
 public static class GetFishEndpoint
 {
     public static void MapGetFish(this IEndpointRouteBuilder app){
-        app.MapGet("/{id}", (Guid id, FishDataContext dbContext) =>{
-            Fish? fish = dbContext.fishes.Find(id);
+        app.MapGet("/{id}", async (Guid id, FishDataContext dbContext) =>{
+            Fish? fish = await dbContext.fishes.FindAsync(id);
             return fish is null ? Results.NotFound() : Results.Ok(
                 new FishDetailsDto(
                     fish.Id,

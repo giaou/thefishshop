@@ -8,7 +8,7 @@ public static class CreateFishEndpoint
 {
     public static void MapCreateFish(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/", async (CreateFishDto newFishDto,FishDataContext dbContext, ILoggerFactory loggerFactory) =>{
+        app.MapPost("/", async (CreateFishDto newFishDto,FishDataContext dbContext, ILogger<Program> logger) =>{
             var newFish = new Fish
             {
                 Name = newFishDto.Name,
@@ -22,7 +22,6 @@ public static class CreateFishEndpoint
 
             dbContext.fishes.Add(newFish);
             await dbContext.SaveChangesAsync();
-            var logger = loggerFactory.CreateLogger("Fishes");
             logger.LogInformation("Create fish {FishName} with price {FishPrice}", newFish.Name, newFish.Price);
             return Results.CreatedAtRoute(
                 EndpointName.GetFish,

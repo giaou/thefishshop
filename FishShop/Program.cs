@@ -21,6 +21,7 @@ app.MapFishTypes();
 await app.InitializeDb();
 
 
+
 app.Run();
 
 

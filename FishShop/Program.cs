@@ -28,7 +28,7 @@ app.Use(async (context, next) =>
         stopwatch.Start();
         await next(context);
     }
-    catch
+    finally
     {
         stopwatch.Stop();
         var elaspedMilliseconds = stopwatch.ElapsedMilliseconds;

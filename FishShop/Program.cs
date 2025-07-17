@@ -3,6 +3,7 @@ using FishShop.Data;
 using FishShop.Features.Fishes;
 using FishShop.Features.FishesTypes;
 using FishShop.Shared.Timing;
+using Microsoft.AspNetCore.HttpLogging;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,15 @@ var connString = builder.Configuration.GetConnectionString("FishData");
 
 //register service here
 builder.Services.AddSqlite<FishDataContext>(connString);
+builder.Services.AddHttpLogging(options=>
+{
+    options.LoggingFields = HttpLoggingFields.RequestMethod |
+                            HttpLoggingFields.RequestPath |
+                            HttpLoggingFields.ResponseStatusCode |
+                            HttpLoggingFields.Duration;
+    options.CombineLogs = true;
+});
+
 var app = builder.Build();
 
 
@@ -20,8 +30,9 @@ app.MapFishes();
 //FishType Endpoints
 app.MapFishTypes();
 
-//write a middleware to count the duration of an action
-app.UseMiddleware<RequestTimingMiddleware>();
+// //write a middleware to count the duration of an action
+// app.UseMiddleware<RequestTimingMiddleware>();
+app.UseHttpLogging();
 
 await app.InitializeDb();
 

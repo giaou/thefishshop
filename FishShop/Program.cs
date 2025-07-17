@@ -2,6 +2,7 @@ using System.Diagnostics;
 using FishShop.Data;
 using FishShop.Features.Fishes;
 using FishShop.Features.FishesTypes;
+using FishShop.Shared.Timing;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,25 +21,7 @@ app.MapFishes();
 app.MapFishTypes();
 
 //write a middleware to count the duration of an action
-app.Use(async (context, next) =>
-{
-    var stopwatch = new Stopwatch();
-    try
-    {
-        stopwatch.Start();
-        await next(context);
-    }
-    finally
-    {
-        stopwatch.Stop();
-        var elaspedMilliseconds = stopwatch.ElapsedMilliseconds;
-        app.Logger.LogInformation("{RequestMethod} {RequestPath} completed with status {Status} in {ElapsedMilliseconds} ms",
-                                    context.Request.Method,
-                                    context.Request.Path,
-                                    context.Response.StatusCode,
-                                    elaspedMilliseconds);
-    }
-});
+app.UseMiddleware<RequestTimingMiddleware>();
 
 await app.InitializeDb();
 

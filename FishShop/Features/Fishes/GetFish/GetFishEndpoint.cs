@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using FishShop.Data;
 using FishShop.Features.Fishes.Constants;
 using FishShop.Models;
@@ -8,21 +9,39 @@ namespace FishShop.Features.Fishes.GetFish;
 public static class GetFishEndpoint
 {
     public static void MapGetFish(this IEndpointRouteBuilder app){
-        app.MapGet("/{id}", async (Guid id, FishDataContext dbContext) =>
+        app.MapGet("/{id}", async (Guid id, FishDataContext dbContext, ILogger<Program> logger) =>
         {
-            Fish? fish = await FindFishAsync(id, dbContext);
-            return fish is null ? Results.NotFound() : Results.Ok(
-                new FishDetailsDto(
-                    fish.Id,
-                    fish.Name,
-                    fish.FishTypeId,
-                    fish.Habitat,
-                    fish.MaxSizeInInches,
-                    fish.Description,
-                    fish.Price,
-                    fish.KoiFish
-                )
-            );
+            try
+            {
+                Fish? fish = await FindFishAsync(id, dbContext);
+                return fish is null ? Results.NotFound() : Results.Ok(
+                    new FishDetailsDto(
+                        fish.Id,
+                        fish.Name,
+                        fish.FishTypeId,
+                        fish.Habitat,
+                        fish.MaxSizeInInches,
+                        fish.Description,
+                        fish.Price,
+                        fish.KoiFish
+                    )
+                );
+            }
+            catch (Exception ex)
+            {
+                var traceId = Activity.Current?.TraceId;
+                logger.LogError(ex, "Could not process a request on machine {Machine}, TraceId: {TraceId}",
+                                    Environment.MachineName,
+                                    traceId);
+                return Results.Problem(
+                    title: "An error occurred while trying to lookup your input",
+                    statusCode: StatusCodes.Status500InternalServerError,
+                    extensions: new Dictionary<string, object?>
+                    {
+                        { "traceId",traceId.ToString()}
+                    }
+                );
+            }
 
         }).WithName(EndpointName.GetFish);
     }

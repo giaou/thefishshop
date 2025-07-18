@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("FishData");
 
 //register service here
+builder.Services.AddProblemDetails();
 builder.Services.AddSqlite<FishDataContext>(connString);
 builder.Services.AddHttpLogging(options=>
 {
@@ -32,7 +33,15 @@ app.MapFishTypes();
 
 // //write a middleware to count the duration of an action
 // app.UseMiddleware<RequestTimingMiddleware>();
+
+//using http logging
 app.UseHttpLogging();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler();
+}
+app.UseStatusCodePages();
+
 
 await app.InitializeDb();
 

@@ -2,6 +2,12 @@
 GET http://localhost:5211/fishes
 
 ###
+GET http://localhost:5211/fishes?pageSize=
+
+###
+GET http://localhost:5211/fishes?pageSize=3&pageNumber=2
+
+###
 GET http://localhost:5211/types
 
 ###

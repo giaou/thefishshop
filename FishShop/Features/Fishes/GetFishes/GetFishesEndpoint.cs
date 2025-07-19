@@ -13,6 +13,9 @@ public static class GetFishesEndpoint
         {
             var skipCount = (request.PageNumber - 1) * request.PageSize;
 
+            var filteredFishes = dbContext.fishes.Where(fish => string.IsNullOrWhiteSpace(request.Name)
+                                                        || EF.Functions.Like(fish.Name,$"{request.Name}%"));
+
             var fishesOnPage = await dbContext.fishes
                                                 .OrderBy(fish => fish.Name)
                                                 .Skip(skipCount)
@@ -28,7 +31,7 @@ public static class GetFishesEndpoint
                                                         )).AsNoTracking()
                                                         .ToListAsync();
 
-            var totalFishes = await dbContext.fishes.CountAsync();
+            var totalFishes = await filteredFishes.CountAsync();
             var totalPages = (int)Math.Ceiling(totalFishes / (double)request.PageSize);
 
             return new FishesPageDto(totalPages, fishesOnPage);

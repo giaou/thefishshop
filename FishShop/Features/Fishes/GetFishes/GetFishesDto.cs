@@ -1,6 +1,6 @@
 namespace FishShop.Features.Fishes.GetFishes;
 
-public record GetFishesDto (int PageNumber = 1, int PageSize = 5);
+public record GetFishesDto (int PageNumber = 1, int PageSize = 5, string? Name=null);
 
 public record FishesPageDto (int TotalPage, IEnumerable<FishSummaryDto> data);
 
